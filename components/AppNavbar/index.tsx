@@ -1,4 +1,5 @@
 import Link from "next/link";
+import cn from "classnames";
 
 type AppNavbarProps = {
   active: "drivers" | "constructors" | "seasons" | "circuits";
@@ -7,16 +8,38 @@ type AppNavbarProps = {
 const LinksList = ({ active }: AppNavbarProps) => (
   <>
     <li>
-      <Link href="/drivers" className={active === 'drivers' ? "underline" : ""}>Drivers</Link>
+      <Link
+        prefetch={false}
+        href="/drivers"
+        className={cn({underline: active === 'drivers'})}
+      >
+        Drivers
+      </Link>
     </li>
     <li>
-      <Link href="/constructors" className={active === 'constructors' ? "underline" : ""}>Constructors</Link>
+      <Link
+        prefetch={false}
+        href="/constructors"
+        className={cn({underline: active === 'constructors'})}
+      >
+        Constructors
+      </Link>
     </li>
     <li>
-      <Link href="/seasons" className={active === 'seasons' ? "underline" : ""}>Seasons</Link>
+      <Link
+        prefetch={false}
+        href="/seasons"
+        className={cn({underline: active === 'seasons'})}
+      >
+        Seasons
+      </Link>
     </li>
     <li>
-      <Link href="/circuits" className={active === 'circuits' ? "underline" : ""}>Circuits</Link>
+      <Link
+        prefetch={false}
+        href="/circuits"
+        className={cn({underline: active === 'circuits'})}
+      >Circuits</Link>
     </li>
   </>
 )

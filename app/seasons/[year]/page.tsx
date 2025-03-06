@@ -1,8 +1,26 @@
-import { Suspense } from "react";
+import dynamic from "next/dynamic";
 import { fetchSeason } from "@/service/season";
-import Loading from "@/components/Loader";
-import SeasonDrivers from "@/components/Season/Drivers";
-import SeasonConstructors from "@/components/Season/Constructors";
+import Loader from "@/components/Loader";
+
+const SeasonDrivers = dynamic(
+  () => import("@/components/Season/Drivers"),
+  { loading: Loader }
+);
+const SeasonConstructors = dynamic(
+  () => import("@/components/Season/Constructors"),
+  { loading: Loader }
+);
+
+export const revalidate = 86400;
+
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  return [
+    { year: "2024" },
+    { year: "2025" },
+  ]
+}
 
 export default async function SeasonDetails({
   params
@@ -28,9 +46,7 @@ export default async function SeasonDetails({
             aria-label="Drivers"
           />
           <div className="tab-content border-base-300 bg-base-100 p-10">
-            <Suspense fallback={Loading()}>
-              <SeasonDrivers year={year} />
-            </Suspense>
+            <SeasonDrivers year={year} />
           </div>
 
           <input
@@ -41,9 +57,7 @@ export default async function SeasonDetails({
             defaultChecked
           />
           <div className="tab-content border-base-300 bg-base-100 p-10">
-            <Suspense fallback={Loading()}>
-              <SeasonConstructors year={year} />
-            </Suspense>
+            <SeasonConstructors year={year} />
           </div>
         </div>
       </div>

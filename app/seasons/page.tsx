@@ -10,7 +10,10 @@ export default async function Seasons() {
       <ul>
         {seasons.seasons.map(season => (
           <li key={`season-${season.season}`}>
-            <Link href={`/seasons/${season.season}`}>{season.season}</Link>
+            <Link
+              href={`/seasons/${season.season}`}
+              prefetch={false}
+            >{season.season}</Link>
           </li>
         ))}
       </ul>

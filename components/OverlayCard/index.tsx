@@ -35,6 +35,7 @@ const OverlayCard = ({
         <Link
           className="btn btn-primary"
           href={buttonHref}
+          prefetch={false}
         >
           {buttonText}
         </Link>

@@ -2,7 +2,10 @@ import { fetchErgast } from "./ergastApi";
 import { SeasonConstructors, SeasonDetails, SeasonDrivers, SeasonsResponse } from "./types";
 
 export const fetchSeasons = async () => {
-  const response = await fetchErgast<SeasonsResponse>("/seasons");
+  const response = await fetchErgast<SeasonsResponse>(
+    "/seasons",
+    { limit: "100" }
+  );
 
   return {
     seasons: response.SeasonTable.Seasons,
