@@ -14,22 +14,32 @@ export const fetchSeasons = async () => {
 
 export const fetchSeason = async (year: string) => {
   try {
-    const [
-      seasonRaces,
-      seasonDrivers,
-      seasonConstructors
-    ] = await Promise.all([
-      fetchErgast<SeasonDetails>(`/${year}`),
-      fetchErgast<SeasonDrivers>(`/${year}/drivers`),
-      fetchErgast<SeasonConstructors>(`/${year}/constructors`),
-    ]);
+    const seasonRaces = await fetchErgast<SeasonDetails>(`/${year}`);
 
     return {
       races: seasonRaces.RaceTable.Races,
-      drivers: seasonDrivers.DriverTable.Drivers,
-      constructors: seasonConstructors.ConstructorTable.Constructors,
     };
   } catch (error) {
     return { error };
   }
 };
+
+export const fetchSeasonDrivers = async (year: string) => {
+  try {
+    const seasonDrivers = await fetchErgast<SeasonDrivers>(`/${year}/drivers`);
+
+    return seasonDrivers.DriverTable.Drivers
+  } catch (error) {
+    return { error };
+  }
+}
+
+export const fetchSeasonConstructors = async (year: string) => {
+  try {
+    const seasonConstructors = await fetchErgast<SeasonConstructors>(`/${year}/constructors`);
+
+    return seasonConstructors.ConstructorTable.Constructors
+  } catch (error) {
+    return { error };
+  }
+}
