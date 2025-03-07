@@ -9,9 +9,9 @@ const SeasonDrivers = async ({ year }: { year: string }) => {
 
   return (
     <ul>
-      {drivers?.map((driver, index) => (
+      {drivers?.sort((a, b) => Number(a.permanentNumber) - Number(b.permanentNumber)).map((driver, index) => (
         <li key={`driver-${index}-${driver.code || driver.driverId}`}>
-          {driver.code || driver.driverId} - {driver.givenName} {driver.familyName} ({driver.nationality})
+          {driver.permanentNumber ? `#${driver.permanentNumber} - ` : ""} {driver.givenName} {driver.familyName} ({driver.nationality})
         </li>
       ))}
     </ul>

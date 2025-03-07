@@ -30,7 +30,6 @@ export const fetchSeason = async (year: string) => {
 export const fetchSeasonDrivers = async (year: string) => {
   try {
     const seasonDrivers = await fetchErgast<SeasonDrivers>(`/${year}/drivers`);
-
     return seasonDrivers.DriverTable.Drivers
   } catch (error) {
     return { error };
