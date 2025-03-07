@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "A small wiki about Formula 1",
 };
 
-export default function RootLayout({
+export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;

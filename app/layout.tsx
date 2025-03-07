@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Gabarito, Domine } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
 
 const sansSerif = Gabarito({
   variable: "--font-sans-serif",
